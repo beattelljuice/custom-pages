@@ -30,7 +30,7 @@ class StaticSiteUpload(models.Model):
                     shutil.move(os.path.join(temp_extract_path, item), target_dir)
                 shutil.rmtree(temp_extract_path)
 
-        self.create_alias_symlink(target_dir, alias_path)
+        self.create_alias_symlink(f"{target_dir}/", alias_path)
         return target_dir
 
     def create_alias_symlink(self, target_dir, alias_path=None):
