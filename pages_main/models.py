@@ -53,4 +53,4 @@ class StaticSiteUpload(models.Model):
         new = self.pk is None
         super().save(*args, **kwargs)
         if new:
-            self.extract_to_static()
+            self.extract_to_static(alias_path=f'/var/www/sites/{self.pk}/')
