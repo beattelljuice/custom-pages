@@ -44,6 +44,9 @@ class StaticSiteUpload(models.Model):
             # Remove existing alias if it exists
             if os.path.islink(alias_path) or os.path.exists(alias_path):
                 os.unlink(alias_path)
+            os.makedirs('/var/www/sites/', exist_ok=True)
+            if not os.path.exists(target_dir):
+                raise FileNotFoundError(f"Target directory does not exist: {target_dir}")
             os.symlink(target_dir, alias_path)
             print(f"Alias created: {alias_path} -> {target_dir}")
         except OSError as e:
